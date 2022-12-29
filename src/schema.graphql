@@ -1,0 +1,19 @@
+
+type Query {
+  cities: [City]
+}
+
+type City {
+	id: ID!
+	city: String
+	country: String
+	countryCode: String
+	latitude: Float!
+	longitude: Float!
+	name: String!
+	population: Int
+	region: String
+	regionCode: String
+	type: String
+	wikiDataId: String
+}
