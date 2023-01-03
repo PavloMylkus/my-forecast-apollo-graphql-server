@@ -1,6 +1,7 @@
 
 type Query {
-  cities: [City]
+  cities(cityName: String, loc: String): [City]
+  weather(coord: String, loc:String): Data
 }
 
 type City {
@@ -16,4 +17,57 @@ type City {
 	regionCode: String
 	type: String
 	wikiDataId: String
+}
+
+type CurentWeather{
+	data: Data
+}
+
+type Data {
+		id: Int
+		base: String
+		codi: Int
+		coord: Coord
+		dt: Float
+		main: Main
+		name: String
+		sys: Sys
+		timezone: Float
+		visibility: Float
+		weather: [Weather]
+		wind: Wind
+}
+type Wind {
+	deg: Float
+	gust: Float
+	speed: Float
+}
+
+type Sys {
+	country: String
+	id: Float
+	sunrise: Float
+	sunset: Float
+	type: Float
+}
+type Coord {
+	lon: Float
+	lat: Float
+}
+type Main {
+	feels_like: Float
+	grnd_level: Float
+	humidity: Float
+	pressure: Float
+	sea_level: Float
+	temp: Float
+	temp_max: Float
+	temp_min: Float
+}
+
+type Weather {
+	description: String
+	icon: String
+	id: Int
+	main: String
 }

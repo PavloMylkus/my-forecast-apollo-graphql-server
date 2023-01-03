@@ -4,15 +4,21 @@ export { };
 const axios = require('axios');
 const { Cities } = require('./enitities/Cities.ts')
 
+interface ISearchInputdata {
+	cityName: string
+	loc: string
+}
 
-const getCities = async () => {
+const getCities = async (cityName, loc) => {
 	let result = {
 		data: []
 	}
+
+
 	const options = {
 		method: 'GET',
-		params: { minPopulation: '1000', languageCode: 'en' },
-		url: URL,
+		params: { minPopulation: '1000', languageCode: loc },
+		url: `https://wft-geo-db.p.rapidapi.com/v1/geo/cities?namePrefix=${cityName}`,
 		headers: {
 			'X-RapidAPI-Key': X_RAPID_API_KEY,
 			'X-RapidAPI-Host': X_RAPID_API_HOST
@@ -24,7 +30,7 @@ const getCities = async () => {
 	}).catch(function (error: any) {
 		console.error(error);
 	});
-	// console.error(result.data);
+
 	return result.data.map((city) => new Cities(city))
 }
 
